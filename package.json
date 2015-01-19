@@ -1,0 +1,26 @@
+{
+  "name": "SFBB",
+  "version": "1.0.0",
+  "description": "Shot Fire Before Bedtime",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.11.0"
+  },
+  "devDependencies": {
+    "express": "^4.11.0",
+    "socket.io": "^1.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ldsn/SFBB.git"
+  },
+  "author": "LDSN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldsn/SFBB/issues"
+  },
+  "homepage": "https://github.com/ldsn/SFBB"
+}

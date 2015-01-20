@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+html{
+    height: 100%;
+}
+body{
+    overflow: hidden;
+    height: 100%;
+    color: white;
+    background-color: black;
+}
+
+input[type=text],
+button{
+    z-index: 3;
+}
+
+.photo-box,
+.barrage-box,
+.control-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.barrage-box .barrage-item{
+    position: absolute;
+    left: 100%;
+}

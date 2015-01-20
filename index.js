@@ -20,5 +20,6 @@ io.on("connection", function(socket) {
 
     socket.on("chat", function(data) {
         socket.emit("chat", data);
+        socket.broadcast.emit("chat", data);
     })
 })

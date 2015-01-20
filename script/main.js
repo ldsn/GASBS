@@ -1,7 +1,8 @@
 /**
   Fire !
 **/
-var socket = io.connect("http://127.0.0.1:9090");
+
+var socket = io.connect("http://192.168.199.182:9090");
 
 socket.on("hello", function(data) {
     $("h2").text(data.msg);

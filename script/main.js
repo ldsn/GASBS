@@ -2,7 +2,7 @@
   Fire !
 **/
 
-var socket = io.connect("http://192.168.199.182:9090");
+var socket = io.connect("http://10.10.10.60:9090");
 
 var barragePool = initBarragePool(100);
 

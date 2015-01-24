@@ -2,9 +2,11 @@
   Fire !
 **/
 
-var socket = io.connect("http://192.168.199.182:9090");
+var socket = io.connect("http://221.217.183.113:9090");
 
 var barragePool = initBarragePool(100);
+
+var inputBoxStatus = false;
 
 
 socket.on("hello", function(data) {
@@ -22,6 +24,23 @@ socket.on("chat", inComingMessage);
 $("button.send").on("click", function(event) {
     var message = $("input").val();
     socket.emit("chat", {msg: message});
+});
+
+$(".control-box .input-box").on("click", function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+});
+
+$(".control-box").on("click", function(event) {
+    $(".input-box").toggleClass("show");
+});
+
+wx.ready(function() {
+    $("button.image").on("click", function(event) {
+        wx.chooseImage({
+            success: chooseImage,
+        });
+    });
 });
 
 function initBarragePool(count) {
@@ -51,4 +70,8 @@ function setBarrageMessage(message) {
 
 function inComingMessage(data) {
     setBarrageMessage(data.msg);
+}
+
+function chooseImage(data) {
+    socket.emit("chat", {msg: data.localIds});
 }

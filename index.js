@@ -8,8 +8,8 @@ var server = require("http").Server(app);
 var io = require("socket.io")(server);
 var request = require("request");
 
-var appid = "wx053e3fbce4850bed";
-var secret = "604221418f269f22f9a2220c5291a59c";
+var appid = "";
+var secret = "";
 
 var tokenURL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+appid+"&secret="+secret;
 var apiURL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=";

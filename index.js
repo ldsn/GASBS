@@ -16,12 +16,12 @@ var apiURL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&acce
 
 server.listen(9090);
 
-request(tokenURL, function(error, response, body) {
+/*request(tokenURL, function(error, response, body) {
     var result = JSON.parse(body);
     request(apiURL+result.access_token, function(err, res, data) {
         console.log(data);
     });
-});
+});*/
 
 app.use("/", express.static( __dirname + "/html" ));
 
@@ -33,6 +33,7 @@ io.on("connection", function(socket) {
     socket.emit("hello", {msg: "hello"});
 
     socket.on("chat", function(data) {
+        console.log(data);
         socket.emit("chat", data);
         socket.broadcast.emit("chat", data);
     })

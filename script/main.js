@@ -2,11 +2,16 @@
   Fire !
 **/
 
-var socket = io.connect("http://221.217.183.113:9090");
+var socket = io.connect(location.host);
 
-var barragePool = initBarragePool(100);
+//var barragePool = initBarragePool(100);
 
 var inputBoxStatus = false;
+
+var CM = new CommentManager(document.getElementById('barrage-container'));
+CM.init();
+
+CM.start();
 
 
 socket.on("hello", function(data) {
@@ -35,13 +40,13 @@ $(".control-box").on("click", function(event) {
     $(".input-box").toggleClass("show");
 });
 
-wx.ready(function() {
+/*wx.ready(function() {
     $("button.image").on("click", function(event) {
         wx.chooseImage({
             success: chooseImage,
         });
     });
-});
+});*/
 
 function initBarragePool(count) {
     var pool = [];
@@ -58,7 +63,7 @@ function initBarragePool(count) {
     return pool;
 }
 
-function setBarrageMessage(message) {
+/*function setBarrageMessage(message) {
     var $item = $(".barrage-item:empty")[0];
     if(!$item) return false;
     $item = $($item);
@@ -66,10 +71,22 @@ function setBarrageMessage(message) {
         $item.empty();
         $item.css({left: "100%"});
     });
-}
+}*/
 
 function inComingMessage(data) {
-    setBarrageMessage(data.msg);
+    //setBarrageMessage(data.msg);
+
+    var obj = {
+        "mode": 1,
+        "text": data.msg,
+        "stime": 0,
+        "size": 25,
+        "color": 0xffffff
+    };
+
+    CM.send(obj);
+
+    console.log(data);
 }
 
 function chooseImage(data) {

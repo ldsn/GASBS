@@ -50,6 +50,10 @@ button{
     width: 100%;
 }
 
+.control-box{
+    z-index: 99999;
+}
+
 .barrage-box .barrage-item{
     position: absolute;
     left: 100%;

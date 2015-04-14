@@ -3,11 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link type="text/css" rel="stylesheet" href="style/CCL.min.css">
         <link type="text/css" rel="stylesheet" href="style/style.css">
     </head>
     <body>
         <div class="photo-box"></div>
-        <div class="barrage-box"></div>
+        <div class="barrage-box abp">
+            <div id="barrage-container" class="container"></div>
+        </div>
         <div class="control-box">
             <div class="input-box show">
                 <input type="text" placeholder="FIRE!">
@@ -17,10 +20,11 @@
 
         </div>
 
+        <script src="script/CCL.min.js"></script>
         <script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.3.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-        <script src="script/config.js"></script>
+        <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script src="script/config.js"></script>-->
         <script src="script/main.js"></script>
     </body>
 </html>

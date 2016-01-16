@@ -1,4 +1,4 @@
-wx.config({
+module.exports = {
     debug: true,
     appId: 'wxf8b4f85f3a794e77',
     timestamp: 1422083550,
@@ -40,4 +40,4 @@ wx.config({
         'chooseCard',
         'openCard'
     ]
-});
+}

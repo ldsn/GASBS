@@ -89,6 +89,18 @@ function inComingMessage(data) {
     console.log(data);
 }
 
+wx.ready(function() {
+    alert(1);
+})
+
 function chooseImage(data) {
+    wx.chooseImage({
+        count: 1,
+        sizeType: ['compressed'],
+        success: function(res) {
+            $("body").css("backgroundImage", "url("+res.localIds+")");
+        }
+    })
+
     socket.emit("chat", {msg: data.localIds});
 }

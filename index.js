@@ -43,7 +43,7 @@ function getconfig (url) {
             }, function(err, resp, data) {
                 data = JSON.parse(data);
                 var text = "jsapi_ticket="+data.ticket+
-                            "&noncetr="+config.nonceStr+
+                            "&noncestr="+config.nonceStr+
                             "&timestamp="+config.timestamp+
                             "&url="+url;
 

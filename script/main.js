@@ -14,21 +14,18 @@ CM.init();
 CM.start();
 
 
-socket.on("hello", function(data) {
-    $("h2").text(data.msg);
+socket.on("chat", inComingMessage);
+socket.on("img", inComingImage);
+
+// bind events
+$("button.send").on("click", function(event) {
+    sendMessage();
 });
 
-/*socket.on("chat", function(data) {
-    $li = $("<li></li>");
-    $li.text(data.msg);
-    $("ul").append($li);
-});*/
-
-socket.on("chat", inComingMessage);
-
-$("button.send").on("click", function(event) {
-    var message = $("input").val();
-    socket.emit("chat", {msg: message});
+$("input").on("keypress", function(event) {
+    if(event.keyCode == 13) {
+        sendMessage();
+    }
 });
 
 $(".control-box .input-box").on("click", function(event) {
@@ -40,13 +37,22 @@ $(".control-box").on("click", function(event) {
     $(".input-box").toggleClass("show");
 });
 
-/*wx.ready(function() {
+
+// bind image events
+wx.ready(function() {
     $("button.image").on("click", function(event) {
         wx.chooseImage({
+            count: 1,
+            sizeType: ['compressed'],
             success: chooseImage,
         });
     });
-});*/
+});
+
+function sendMessage() {
+    var message = $("input").val();
+    socket.emit("chat", {msg: message});
+}
 
 function initBarragePool(count) {
     var pool = [];
@@ -63,19 +69,9 @@ function initBarragePool(count) {
     return pool;
 }
 
-/*function setBarrageMessage(message) {
-    var $item = $(".barrage-item:empty")[0];
-    if(!$item) return false;
-    $item = $($item);
-    $item.text(message).animate({left: "-10%"}, 5000, "linear", function() {
-        $item.empty();
-        $item.css({left: "100%"});
-    });
-}*/
 
+// got a shoot
 function inComingMessage(data) {
-    //setBarrageMessage(data.msg);
-
     var obj = {
         "mode": 1,
         "text": data.msg,
@@ -85,22 +81,19 @@ function inComingMessage(data) {
     };
 
     CM.send(obj);
-
-    console.log(data);
 }
 
-wx.ready(function() {
-    alert(1);
-})
+function inComingImage(data) {
+    $("body").css("backgroundImage", "url("+data.url+")");
+}
 
 function chooseImage(data) {
-    wx.chooseImage({
-        count: 1,
-        sizeType: ['compressed'],
-        success: function(res) {
-            $("body").css("backgroundImage", "url("+res.localIds+")");
+    wx.uploadImage({
+        localId: data.localIds,
+        isShowProgressTips: 0,
+        success: function(result) {
+            socket.emit("img", {server_id: result.serverId});
         }
-    })
+    });
 
-    socket.emit("chat", {msg: data.localIds});
 }
